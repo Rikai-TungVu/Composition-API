@@ -8,7 +8,7 @@
 
 <script>
 import { reactive } from 'vue';
-/* import { reactive } from 'vue'; */
+/* import { ref } from 'vue'; */
 // ref work with single data(.value)
 // reactive work with group data
 
