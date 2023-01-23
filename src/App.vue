@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 /* import { ref } from 'vue'; */
 // ref work with single data(.value)
 // reactive work with group data
@@ -31,6 +31,13 @@ export default {
 
     const uName = computed(function () {
       return firstName.value + ' ' + lastName.value;
+    });
+
+    watch([uAge, uName], function (newValues, olaValues) {
+      console.log('Old Age: ', olaValues[0]);
+      console.log('New Age: ', newValues[0]);
+      console.log('Old Name: ', olaValues[1]);
+      console.log('New Name: ', newValues[1]);
     });
 
     function setNewData() {
