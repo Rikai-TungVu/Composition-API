@@ -2,13 +2,14 @@
   <section class="container">
     <h2>{{ userinfo.name }}</h2>
     <h3>{{ userinfo.age }}</h3>
+    <button @click="setAge">Change Age</button>
   </section>
 </template>
 
 <script>
 import { reactive } from 'vue';
 /* import { reactive } from 'vue'; */
-// ref work with single data
+// ref work with single data(.value)
 // reactive work with group data
 
 export default {
@@ -20,22 +21,25 @@ export default {
       age: 31,
     });
 
-    setTimeout(function () {
-      // user.value.name = 'Mon'; (ref)
-      // user.value.age = 32; (ref)
-      user.name = 'Mon';
-      user.age = 32;
-    }, 2000);
-    /* Sự dụng ref còn thêm .value để chỉ biến */
+    function setNewData() {
+      user.age = user.age + 1;
+    }
 
-    return { userinfo: user };
-    /* return result to 1 variable */
+    return { userinfo: user, setAge: setNewData };
+    /* attack object(user) to a name(userinfo) */
+    /* attack an event(setNewData) to a name(setAge) */
   },
   /* data() {
     return {
       userName: 'Mon',
+      age: 31
     };
   }, */
+  methods: {
+    setNewAge() {
+      this.age = 32;
+    },
+  },
 };
 </script>
 
