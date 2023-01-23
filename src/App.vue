@@ -1,45 +1,69 @@
 <template>
   <section class="container">
-    <h2>{{ userinfo.name }}</h2>
-    <h3>{{ userinfo.age }}</h3>
+    <h2>{{ userName }}</h2>
+    <h3>{{ age }}</h3>
     <button @click="setAge">Change Age</button>
+    <div>
+      <input type="text" placeholder="First Name" @input="setFirstName" />
+      <input type="text" placeholder="Last Name" @input="setLastname" />
+    </div>
   </section>
 </template>
 
 <script>
-import { reactive } from 'vue';
+import { ref, computed } from 'vue';
 /* import { ref } from 'vue'; */
 // ref work with single data(.value)
 // reactive work with group data
 
 export default {
   setup() {
-    //  const uName = ref('Monday');
-    //  const uAge = ref(31);
-    const user = reactive({
-      name: 'Monday',
-      age: 31,
+    // const uName = ref('Monday');
+    const firstName = ref('');
+    const lastName = ref('');
+    const uAge = ref(31);
+    // const user = reactive({
+    //   name: 'Monday',
+    //   age: 31,
+    // });
+
+    const uName = computed(function () {
+      return firstName.value + ' ' + lastName.value;
     });
 
     function setNewData() {
-      user.age = user.age + 1;
+      uAge.value = uAge.value + 1;
     }
 
-    return { userinfo: user, setAge: setNewData };
+    function setFirstName(event) {
+      firstName.value = event.target.value;
+    }
+
+    function setLastname(event) {
+      lastName.value = event.target.value;
+    }
+
+    return {
+      userName: uName,
+      age: uAge,
+      setAge: setNewData,
+      setFirstName,
+      setLastname,
+    };
     /* attack object(user) to a name(userinfo) */
     /* attack an event(setNewData) to a name(setAge) */
   },
-  /* data() {
-    return {
-      userName: 'Mon',
-      age: 31
-    };
-  }, */
-  methods: {
-    setNewAge() {
-      this.age = 32;
-    },
-  },
+  // data() {
+  //   return {
+  //     userName: 'Mon',
+  //     age: 31
+  //   };
+  // },
+  // methods: {
+  //   setNewAge() {
+  //     this.age = 32;
+  //   },
+  // },
 };
 </script>
 
