@@ -6,8 +6,10 @@
     <div>
       <input type="text" placeholder="First Name" v-model="firstName" />
       <!-- <input type="text" placeholder="First Name" @input="setFirstName" /> -->
-      <input type="text" placeholder="Last Name" v-model="lastName" />
+      <input type="text" placeholder="Last Name" ref="lastNameInput" />
+      <!-- receive lastname.value from function setLastname-->
       <!-- <input type="text" placeholder="Last Name" @input="setLastname" /> -->
+      <button @click="setLastName">Set Last Name</button>
     </div>
   </section>
 </template>
@@ -23,6 +25,7 @@ export default {
     // const uName = ref('Monday');
     const firstName = ref('');
     const lastName = ref('');
+    const lastNameInput = ref(null);
     const uAge = ref(31);
     // const user = reactive({
     //   name: 'Monday',
@@ -48,18 +51,19 @@ export default {
     //   firstName.value = event.target.value;
     // }
 
-    // function setLastname(event) {
-    //   lastName.value = event.target.value;
-    // }
+    function setLastName() {
+      // lastName.value = this.$refs.lastNameInput.value;
+      lastName.value = lastNameInput.value.value;
+    } /* transfer lastname.value from function setLastName to action lastNameInput(ref) */
 
     return {
       userName: uName,
       age: uAge,
       setAge: setNewData,
       // setFirstName,
-      // setLastname,
+      setLastName,
       firstName,
-      lastName,
+      lastNameInput,
     };
     /* attack object(user) to a name(userinfo) */
     /* attack an event(setNewData) to a name(setAge) */
