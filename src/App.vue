@@ -1,7 +1,13 @@
 <template>
   <section class="container">
-    <user-data></user-data>
+    <user-data
+      :first-name="firstName"
+      :last-name="lastName"
+      :user-name="userName"
+      :age="age"
+    ></user-data>
     <!-- call UserData(child) -->
+    <!-- bind data -->
     <button @click="setAge">Change Age</button>
     <div>
       <input type="text" placeholder="First Name" v-model="firstName" />
@@ -70,6 +76,7 @@ export default {
       // setFirstName,
       setLastName,
       firstName,
+      lastName,
       lastNameInput,
     };
     /* attack object(user) to a name(userinfo) */
