@@ -1,13 +1,11 @@
 <template>
   <section class="container">
-    <user-data
-      :first-name="firstName"
-      :last-name="lastName"
-      :user-name="userName"
-      :age="age"
-    ></user-data>
+    <user-data :first-name="firstName" :last-name="lastName"></user-data>
     <!-- call UserData(child) -->
     <!-- bind data -->
+    <!-- (3)Working with Provide/ Inject -->
+    <!-- :user-name="userName" -->
+    <!-- :age="age" -->
     <button @click="setAge">Change Age</button>
     <div>
       <input type="text" placeholder="First Name" v-model="firstName" />
@@ -24,7 +22,7 @@
 import './components/graphic/setting.css';
 
 import UserData from './components/Data/UserData.vue';
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, provide } from 'vue';
 /* import { ref } from 'vue'; */
 // ref work with single data(.value)
 // reactive work with group data
@@ -44,6 +42,10 @@ export default {
     //   name: 'Monday',
     //   age: 31,
     // });
+
+    provide('userAge', uAge);
+    // (3)Working with Provide/ Inject
+    // define data to provide in App(parent), data store
 
     const uName = computed(function () {
       return firstName.value + ' ' + lastName.value;
@@ -82,6 +84,7 @@ export default {
     /* attack object(user) to a name(userinfo) */
     /* attack an event(setNewData) to a name(setAge) */
   },
+  // Options API
   // data() {
   //   return {
   //     userName: 'Mon',
@@ -93,5 +96,8 @@ export default {
   //     this.age = 32;
   //   },
   // },
+  // provide() {
+  //   return { age: this.age };
+  // }
 };
 </script>

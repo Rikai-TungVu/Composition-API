@@ -6,12 +6,15 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, inject } from 'vue';
 // (2) Not necessary to import ref when use 'props' way
+// (3)Working with Provide/ Inject
 
 export default {
-  props: ['firstName', 'lastName', 'age'],
+  props: ['firstName', 'lastName'],
   //Define props in UserData(child)
+  // (3)Working with Provide/ Inject
+  // Delete , 'age'
 
   //Composition API
   setup(props, context) {
@@ -33,12 +36,17 @@ export default {
 
     console.log(context);
 
+    const age = inject('userAge');
+    // (3)Working with Provide/ Inject
+    // define variable in UserData(Child)
+
     //context.emit('save-data', 1);
     // Work same ways like ...
     // this.$emit('save-data, 1');
 
     return {
       uName,
+      age,
     };
   },
 
