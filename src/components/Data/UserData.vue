@@ -1,6 +1,8 @@
 <template>
-  <h2>{{ userName }}</h2>
-  <h3>{{ age }}</h3>
+  <div>
+    <h2>{{ uName }}</h2>
+    <h3>{{ age }}</h3>
+  </div>
 </template>
 
 <script>
@@ -12,8 +14,9 @@ export default {
   //Define props in UserData(child)
 
   //Composition API
-  setup(props) {
+  setup(props, context) {
     // (2) use 'props' to transfer data
+
     // (1)Traditions Ways of Compositions API
     // const firstName = ref('');
     // const lastName = ref('');
@@ -27,6 +30,12 @@ export default {
     const uName = computed(function () {
       return props.firstName + ' ' + props.lastName;
     }); // (2) Use 'props' ways
+
+    console.log(context);
+
+    //context.emit('save-data', 1);
+    // Work same ways like ...
+    // this.$emit('save-data, 1');
 
     return {
       uName,
